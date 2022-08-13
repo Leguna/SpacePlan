@@ -32,7 +32,7 @@ namespace SpacePlan.Module.ClickGame
 
         private void OnClickBack()
         {
-            SceneLoader.Instance.LoadScene("Main");
+            SceneLoader.Instance.LoadScene("MainMenu");
         }
 
         public override void SetView(ClickGameView view)
