@@ -6,6 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
+    path: Assets/Scenes/MainMenu.unity
+    guid: f7b8ad80a852c2948b795a695851ffc9
+  - enabled: 1
+    path: Assets/Scenes/SplashScreen.unity
+    guid: 8e09e85a084200640b511446d2392cd9
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+    guid: f6a7684e85701c34e8c793a2e81253ee
+  - enabled: 1
+    path: Assets/Scenes/Prototypes/SpaceShipPrototypeScene.unity
+    guid: 2254220fdeb2f1b4388a824543e85cfc
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 9652e3e4057784741ad9c0b49cbc682b, type: 2}

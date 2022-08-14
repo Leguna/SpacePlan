@@ -3,7 +3,9 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
 using SpacePlan.Module.ClickGame;
+using SpacePlan.Module.InputSystem;
 using SpacePlan.Module.SoundFx;
+using SpacePlan.Module.Spaceship;
 
 namespace SpacePlan.Gameplay
 {
@@ -13,13 +15,17 @@ namespace SpacePlan.Gameplay
 
         private ClickGameController _clickGame;
         private SoundFxController _soundFx;
+        private SpaceshipController _spaceshipController;
+        private SpaceshipInputController _spaceshipInputController;
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[]
             {
                 new ClickGameController(),
-                new SoundFxController()
+                new SoundFxController(),
+                new SpaceshipInputController(),
+                new SpaceshipController()
             };
         }
 
@@ -27,6 +33,7 @@ namespace SpacePlan.Gameplay
         {
             _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
+            _spaceshipController.SetView(_view.SpaceshipView);
             yield return null;
         }
 
