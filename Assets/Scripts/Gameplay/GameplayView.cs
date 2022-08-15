@@ -10,6 +10,6 @@ namespace SpacePlan.Gameplay
     {
         [SerializeField] public ClickGameView ClickGameView;
         [SerializeField] public SoundFxView SoundFxView;
-        [SerializeField] public SpaceshipView SpaceshipView;
+        [SerializeField] public PlayerSpaceshipView PlayerSpaceshipView;
     }
 }

@@ -33,7 +33,7 @@ namespace SpacePlan.Gameplay
         {
             _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
-            _spaceshipController.SetView(_view.SpaceshipView);
+            _spaceshipController.SetView(_view.PlayerSpaceshipView);
             yield return null;
         }
 

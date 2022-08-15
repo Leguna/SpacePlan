@@ -8,12 +8,24 @@ namespace SpacePlan.Module.Spaceship.Model
 {
     public abstract class SpaceshipBaseModel : BaseModel, ISpaceshipModel
     {
-        public float Speed { get; set; }
-        public Vector2 Direction { get; protected set; }
+        private Vector2 _position;
+        public Vector2 MoveVelocity { get; protected set; }
 
-        public virtual void Move(Vector2 moveDirection)
+        public Vector2 Position
         {
-            Direction = moveDirection;
+            get => _position;
+            set
+            {
+                _position = value;
+                SetDataAsDirty();
+            }
+        }
+
+        public float Speed { get; set; }
+
+        public virtual void Move(Vector2 moveVelocity)
+        {
+            MoveVelocity = moveVelocity;
             SetDataAsDirty();
         }
 

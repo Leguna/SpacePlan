@@ -4,8 +4,10 @@ namespace SpacePlan.Module.Spaceship.Interfaces
 {
     public interface IMovable
     {
+        Vector2 Position { get; set; }
         float Speed { get; set; }
-        Vector2 Direction { get; }
-        void Move(Vector2 moveDirection);
+        Vector2 MoveVelocity { get; }
+        void Move(Vector2 moveVelocity);
+
     }
 }
