@@ -2,13 +2,15 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
+using SpacePlan.Constant;
+using UnityEngine;
 
 namespace SpacePlan.Main
 {
     public class MainLauncher : SceneLauncher<MainLauncher, MainView>
 
     {
-        public override string SceneName => "Main";
+        public override string SceneName => SceneConstant.mainMenu;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -17,7 +19,7 @@ namespace SpacePlan.Main
 
         protected override IEnumerator InitSceneObject()
         {
-            _view.SetCallbacks(OnClickPlayButton);
+            _view.SetCallbacks(OnClickPlayButton, OnClickHighScoreButton, OnClickExitButton);
             yield return null;
         }
 
@@ -35,6 +37,18 @@ namespace SpacePlan.Main
         private void OnClickPlayButton()
         {
             SceneLoader.Instance.LoadScene("Gameplay");
+        }
+
+        private void OnClickHighScoreButton()
+        {
+            // TODO @Faisal: Remove this after implementing high score screen.
+            Debug.Log("Show Score Board!");
+        }
+
+        private void OnClickExitButton()
+        {
+            // TODO @Faisal: Remove this after implementing exit screen.
+            Debug.Log("Quit Game!");
         }
     }
 }
