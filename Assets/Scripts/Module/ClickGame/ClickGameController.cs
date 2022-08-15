@@ -2,20 +2,19 @@ using System.Collections;
 using Agate.MVC.Base;
 using SpacePlan.Boot;
 using SpacePlan.Message;
-using SpacePlan.Module.SaveGame;
-
-#pragma warning disable CS0465
+using SpacePlan.Module.Leaderboard;
 
 namespace SpacePlan.Module.ClickGame
 {
     public class ClickGameController : ObjectController<ClickGameController, ClickGameModel, IClickGameModel, ClickGameView>
     {
-        private SaveDataController _saveData;
+        private LeaderboardController _leaderboard;
 
         public override IEnumerator Finalize()
         {
             yield return base.Finalize();
-            _model.SetCoin(_saveData.Model.Coin);
+            //_model.SetCoin(_saveData.Model.Coin);
+          
         }
 
         private void OnClickEarnCoin()

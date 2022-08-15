@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
+using SpacePlan.Constant;
 using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.SoundFx;
 
@@ -9,7 +10,7 @@ namespace SpacePlan.Gameplay
 {
     public class GameplayLauncher : SceneLauncher<GameplayLauncher, GameplayView>
     {
-        public override string SceneName => "Gameplay";
+        public override string SceneName => SceneConstant.gamePlay;
 
         private ClickGameController _clickGame;
         private SoundFxController _soundFx;
@@ -27,6 +28,7 @@ namespace SpacePlan.Gameplay
         {
             _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
+
             yield return null;
         }
 

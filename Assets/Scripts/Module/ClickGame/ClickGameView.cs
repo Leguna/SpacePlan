@@ -15,13 +15,15 @@ namespace SpacePlan.Module.ClickGame
 
         protected override void InitRenderModel(IClickGameModel model)
         {
-            _coinText.text = $"Coin: {model.Coin.ToString()}";
+            _coinText.text = $"Coin: {model.Coin}";
         }
 
         protected override void UpdateRenderModel(IClickGameModel model)
         {
-            _coinText.text = $"Coin: {model.Coin.ToString()}";
+            _coinText.text = $"Coin: {model.Coin}";
         }
+
+
 
         public void SetCallbacks(UnityAction onClickEarnCoin, UnityAction onClickSpendCoin, UnityAction onClickBack)
         {

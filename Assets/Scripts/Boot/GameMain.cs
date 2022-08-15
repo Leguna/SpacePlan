@@ -1,7 +1,7 @@
 using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using SpacePlan.Module.SaveGame;
+using SpacePlan.Module.Leaderboard;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +12,7 @@ namespace SpacePlan.Boot
         protected override IController[] GetDependencies()
         {
             return new IController[]{
-                new SaveDataController()
+                new LeaderboardController()
             };
         }
 
@@ -29,7 +29,7 @@ namespace SpacePlan.Boot
 
         private void CreateEventSystem()
         {
-            GameObject obj = new GameObject("Event System");
+            GameObject obj = new("Event System");
             obj.AddComponent<EventSystem>();
             obj.AddComponent<StandaloneInputModule>();
             GameObject.DontDestroyOnLoad(obj);

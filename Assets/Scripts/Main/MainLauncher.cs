@@ -3,6 +3,7 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
 using SpacePlan.Constant;
+using SpacePlan.Module.Leaderboard;
 using UnityEngine; 
 
 namespace SpacePlan.Main
@@ -12,15 +13,20 @@ namespace SpacePlan.Main
     {
         public override string SceneName => SceneConstant.mainMenu;
 
+        private LeaderboardController _leaderBoardController;
+
         protected override IController[] GetSceneDependencies()
         {
-            return null;
+            return new IController[]
+           {
+                new LeaderboardController()
+           };
         }
 
         protected override IEnumerator InitSceneObject()
         {
-
-            _view.SetCallbacks(OnClickPlayButton, OnClickHighScoreButton, OnClickExitButton);
+            _view.SetCallbacks(OnClickPlayButton, OnClickLeaderboardButton, OnClickExitButton);
+            _leaderBoardController.SetView(_view.leaderboardView);
             yield return null;
         }
 
@@ -40,10 +46,11 @@ namespace SpacePlan.Main
             SceneLoader.Instance.LoadScene("Gameplay");
         }
 
-        private void OnClickHighScoreButton()
+        private void OnClickLeaderboardButton()
         {
             // Do somethink here
             Debug.Log("Show Score Board!");
+            _view.leaderboardView.ShowView();
         }
 
         private void OnClickExitButton()
@@ -51,5 +58,6 @@ namespace SpacePlan.Main
             // Do somethink here
             Debug.Log("Quit Game!");
         }
+
     }
 }
