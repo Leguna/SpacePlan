@@ -3,7 +3,7 @@ using SpacePlan.Message;
 using SpacePlan.Module.SaveGame;
 using SpacePlan.Module.SoundFx;
 using SpacePlan.Module.Spaceship;
-using UnityEngine;
+using SpacePlan.Module.Spaceship.Ship.Controller;
 
 namespace SpacePlan.Gameplay
 {
@@ -11,7 +11,7 @@ namespace SpacePlan.Gameplay
     {
         private SaveDataController _saveData;
         private SoundFxController _soundFx;
-        private SpaceshipController _spaceshipController;
+        private PlayerSpaceshipController _playerSpaceshipController;
 
         private void OnUpdateCoin(UpdateCoinMessage message)
         {
@@ -19,21 +19,21 @@ namespace SpacePlan.Gameplay
             _soundFx.OnUpdateCoin();
         }
 
-        private void OnMoveSpaceship(MovePlayerShipMessage message)
+        private void OnMoveSpaceship(InputMessage message)
         {
-            _spaceshipController.OnMoveInput(message.Direction);
+            _playerSpaceshipController.OnMoveInput(message.Direction);
         }
 
         protected override void Connect()
         {
             Subscribe<UpdateCoinMessage>(OnUpdateCoin);
-            Subscribe<MovePlayerShipMessage>(OnMoveSpaceship);
+            Subscribe<InputMessage>(OnMoveSpaceship);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<UpdateCoinMessage>(OnUpdateCoin);
-            Unsubscribe<MovePlayerShipMessage>(OnMoveSpaceship);
+            Unsubscribe<InputMessage>(OnMoveSpaceship);
         }
     }
 }

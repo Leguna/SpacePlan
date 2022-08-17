@@ -19,7 +19,7 @@ namespace SpacePlan.Module.InputSystem
 
         private void OnMoveInput(InputAction.CallbackContext ctx)
         {
-            Publish(new MovePlayerShipMessage(ctx.ReadValue<Vector2>()));
+            Publish(new InputMessage(ctx.ReadValue<Vector2>()));
         }
 
         public override IEnumerator Terminate()
