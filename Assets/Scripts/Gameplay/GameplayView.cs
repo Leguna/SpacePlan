@@ -2,7 +2,7 @@ using Agate.MVC.Base;
 using SpacePlan.Module.BulletPool;
 using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.SoundFx;
-using SpacePlan.Module.Spaceship.Ship.View;
+using SpacePlan.Module.Spaceship.Player;
 using UnityEngine;
 
 namespace SpacePlan.Gameplay

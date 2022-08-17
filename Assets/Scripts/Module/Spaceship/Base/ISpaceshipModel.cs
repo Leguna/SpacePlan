@@ -1,6 +1,6 @@
 ﻿using Agate.MVC.Base;
 
-namespace SpacePlan.Module.Spaceship.Ship.Interfaces.SpaceshipTypes
+namespace SpacePlan.Module.Spaceship.Base
 {
     public interface ISpaceshipModel : IBaseModel
     {

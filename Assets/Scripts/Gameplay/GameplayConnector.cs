@@ -3,7 +3,7 @@ using SpacePlan.Message;
 using SpacePlan.Module.SaveGame;
 using SpacePlan.Module.SoundFx;
 using SpacePlan.Module.Spaceship;
-using SpacePlan.Module.Spaceship.Ship.Controller;
+using SpacePlan.Module.Spaceship.Player;
 
 namespace SpacePlan.Gameplay
 {

@@ -2,6 +2,7 @@
 using Agate.MVC.Base;
 using SpacePlan.Module.Bullet.Model;
 using SpacePlan.Module.Bullet.View;
+using SpacePlan.Module.Spaceship.Base;
 using SpacePlan.Module.Spaceship.Ship.Interfaces;
 using UnityEngine;
 
@@ -16,10 +17,8 @@ namespace SpacePlan.Module.Bullet.Controller
         {
             _onHitEvent = OnHit;
             _onMoveEvent = OnMoveEvent;
-            _model = bulletModel;
             SetView(bulletView);
-            _model.Move(Vector2.up);
-            _view.Rigidbody2D.velocity = _model.Velocity;
+            _model = bulletModel;
             _view.SetCallbacks(_onHitEvent, _onMoveEvent);
         }
 
@@ -37,8 +36,10 @@ namespace SpacePlan.Module.Bullet.Controller
         public void Spawn(Vector3 position, BulletModel bulletModel)
         {
             _model = bulletModel;
-            _view.transform.position = _model.Position;
+            _view.transform.position = position;
             _view.gameObject.SetActive(true);
+            _model.Move(Vector2.up * _model.Speed);
+            _view.Rigidbody2D.velocity = _model.Velocity;
         }
 
         private void OnHit(Collider2D obj)
@@ -53,8 +54,8 @@ namespace SpacePlan.Module.Bullet.Controller
 
         private void DeSpawn()
         {
+            _model.DeSpawn();
             _view.gameObject.SetActive(false);
-            _model.TakeDamage(999);
             _view.transform.position = _model.DeSpawnPosition;
         }
     }

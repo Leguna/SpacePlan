@@ -1,8 +1,8 @@
 ﻿using SpacePlan.Module.Base;
-using SpacePlan.Module.Spaceship.Ship.Interfaces.SpaceshipTypes;
+using SpacePlan.Module.Spaceship.Base;
 using UnityEngine;
 
-namespace SpacePlan.Module.Spaceship.Ship.Model
+namespace SpacePlan.Module.Spaceship.Player
 {
     public class PlayerSpaceshipModel : SpaceshipBaseModel, IPlayerSpaceshipModel
     {

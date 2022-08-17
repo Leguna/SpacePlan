@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Agate.MVC.Base;
+﻿using Agate.MVC.Base;
 using SpacePlan.Message;
 using SpacePlan.Module.Bullet.Controller;
 using SpacePlan.Module.Bullet.Model;
@@ -15,23 +14,35 @@ namespace SpacePlan.Module.BulletPool
             SpawnBullet(position);
         }
 
-        public override IEnumerator Initialize()
+        public override void SetView(BulletPoolView view)
         {
-            yield return base.Initialize();
+            base.SetView(view);
+            BulletPoolSetup();
         }
 
         private void SpawnBullet(Vector3 position)
         {
-            BulletController bulletController = new BulletController();
-            BulletModel bulletModel = new();
-            bulletModel.SetPos(position);
+            BulletController bulletController = _model.GetBulletController();
+            bulletController.Spawn(position, new BulletModel());
+        }
 
-            var bulletView = Object.Instantiate(_model.BulletPrefab, position, Quaternion.identity,
-                _view.bulletPoolTransform);
+        private void BulletPoolSetup()
+        {
+            for (int i = 0; i < _model.PoolSize; i++)
+            {
+                BulletController bulletController = new BulletController();
+                BulletModel bulletModel = new();
+                bulletModel.SetPos(_model.SpawnPosition);
+                bulletModel.DeSpawn();
+                var bulletView = Object.Instantiate(_model.BulletPrefab, _model.SpawnPosition, Quaternion.identity,
+                    _view.bulletPoolTransform);
 
-            InjectDependencies(bulletController);
-            bulletController.Init(bulletView, bulletModel);
-            bulletController.Spawn(position, bulletModel);
+                InjectDependencies(bulletController);
+                bulletController.Init(bulletView, bulletModel);
+                bulletController.Spawn(_model.SpawnPosition, bulletModel);
+                _model.AddBullet(bulletController);
+                bulletView.gameObject.SetActive(false);
+            }
         }
     }
 }

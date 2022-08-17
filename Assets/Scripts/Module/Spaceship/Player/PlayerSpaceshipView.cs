@@ -1,10 +1,9 @@
 using System;
 using Agate.MVC.Base;
 using SpacePlan.Module.Base;
-using SpacePlan.Module.Spaceship.Ship.Interfaces.SpaceshipTypes;
 using UnityEngine;
 
-namespace SpacePlan.Module.Spaceship.Ship.View
+namespace SpacePlan.Module.Spaceship.Player
 {
     public class PlayerSpaceshipView : ObjectView<IPlayerSpaceshipModel>
     {

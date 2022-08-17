@@ -1,15 +1,9 @@
 ﻿using Agate.MVC.Base;
 using SpacePlan.Message;
 using SpacePlan.Module.Base;
-using SpacePlan.Module.Bullet.Controller;
-using SpacePlan.Module.Bullet.Model;
-using SpacePlan.Module.Bullet.View;
-using SpacePlan.Module.Spaceship.Ship.Interfaces.SpaceshipTypes;
-using SpacePlan.Module.Spaceship.Ship.Model;
-using SpacePlan.Module.Spaceship.Ship.View;
 using UnityEngine;
 
-namespace SpacePlan.Module.Spaceship.Ship.Controller
+namespace SpacePlan.Module.Spaceship.Player
 {
     class PlayerSpaceshipController : ObjectController<PlayerSpaceshipController, PlayerSpaceshipModel,
         IPlayerSpaceshipModel,

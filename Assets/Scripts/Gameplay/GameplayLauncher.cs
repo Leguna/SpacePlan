@@ -7,7 +7,7 @@ using SpacePlan.Module.BulletPool;
 using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.InputSystem;
 using SpacePlan.Module.SoundFx;
-using SpacePlan.Module.Spaceship.Ship.Controller;
+using SpacePlan.Module.Spaceship.Player;
 
 namespace SpacePlan.Gameplay
 {

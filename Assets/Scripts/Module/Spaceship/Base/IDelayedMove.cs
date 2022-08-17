@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace SpacePlan.Module.Spaceship.Ship.Interfaces
+namespace SpacePlan.Module.Spaceship.Base
 {
     interface IDelayedMove
     {

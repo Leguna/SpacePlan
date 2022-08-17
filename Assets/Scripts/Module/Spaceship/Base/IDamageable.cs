@@ -1,4 +1,4 @@
-﻿namespace SpacePlan.Module.Spaceship.Ship.Interfaces
+﻿namespace SpacePlan.Module.Spaceship.Base
 {
     public interface IDamageable
     {

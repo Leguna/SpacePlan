@@ -1,10 +1,7 @@
-﻿using System;
-using Agate.MVC.Base;
-using SpacePlan.Module.Spaceship.Ship.Interfaces;
-using SpacePlan.Module.Spaceship.Ship.Interfaces.SpaceshipTypes;
+﻿using Agate.MVC.Base;
 using UnityEngine;
 
-namespace SpacePlan.Module.Spaceship.Ship.Model
+namespace SpacePlan.Module.Spaceship.Base
 {
     public abstract class SpaceshipBaseModel : BaseModel, ISpaceshipModel
     {
