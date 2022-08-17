@@ -1,14 +1,13 @@
 ﻿using Agate.MVC.Base;
 using SpacePlan.Module.Base;
 using SpacePlan.Module.Spaceship.Base;
-using SpacePlan.Module.Spaceship.Ship.Interfaces;
 using UnityEngine;
 
-namespace SpacePlan.Module.Bullet.Model
+namespace SpacePlan.Module.Bullet
 {
-    public class BulletModel : BaseModel, IMovable, IDamageable, IBulletModel
+    public class BulletModel : BaseModel, IMovable, IDamageable, IBulletModel, IDoingDamage
     {
-        public float DamageValue { private set; get; }
+        public float Damage { private set; get; }
         public Vector2 Velocity { get; private set; }
         public Vector2 Position { get; private set; }
         private Limit DeSpawnLimitY { get; }
@@ -23,7 +22,7 @@ namespace SpacePlan.Module.Bullet.Model
             MaxHealth = 1;
             CurrentHealth = MaxHealth;
             Position = Vector2.zero;
-            DamageValue = 1;
+            Damage = 1;
             DeSpawnLimitY = new Limit { Min = -7, Max = 7 };
         }
 
@@ -39,7 +38,7 @@ namespace SpacePlan.Module.Bullet.Model
 
         private void SetDamageValue(float damageValue)
         {
-            DamageValue = damageValue;
+            Damage = damageValue;
             SetDataAsDirty();
         }
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Agate.MVC.Base;
-using SpacePlan.Module.Bullet.Controller;
-using SpacePlan.Module.Bullet.View;
+using SpacePlan.Module.Bullet;
 using UnityEngine;
 
 namespace SpacePlan.Module.BulletPool
@@ -17,7 +16,7 @@ namespace SpacePlan.Module.BulletPool
         {
             Bullets = new List<BulletController>();
             BulletPrefab = Resources.Load<BulletView>("Prefabs/Bullet");
-            PoolSize = 10;
+            PoolSize = 2;
         }
 
         public void AddBullet(BulletController bullet)

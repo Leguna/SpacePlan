@@ -1,7 +1,6 @@
 ﻿using Agate.MVC.Base;
 using SpacePlan.Message;
-using SpacePlan.Module.Bullet.Controller;
-using SpacePlan.Module.Bullet.Model;
+using SpacePlan.Module.Bullet;
 using UnityEngine;
 
 namespace SpacePlan.Module.BulletPool
@@ -22,7 +21,7 @@ namespace SpacePlan.Module.BulletPool
 
         private void SpawnBullet(Vector3 position)
         {
-            BulletController bulletController = _model.GetBulletController();
+            BulletController bulletController = _model.GetBulletController() ?? AddBulletToPool();
             bulletController.Spawn(position, new BulletModel());
         }
 
@@ -30,19 +29,25 @@ namespace SpacePlan.Module.BulletPool
         {
             for (int i = 0; i < _model.PoolSize; i++)
             {
-                BulletController bulletController = new BulletController();
-                BulletModel bulletModel = new();
-                bulletModel.SetPos(_model.SpawnPosition);
-                bulletModel.DeSpawn();
-                var bulletView = Object.Instantiate(_model.BulletPrefab, _model.SpawnPosition, Quaternion.identity,
-                    _view.bulletPoolTransform);
-
-                InjectDependencies(bulletController);
-                bulletController.Init(bulletView, bulletModel);
-                bulletController.Spawn(_model.SpawnPosition, bulletModel);
-                _model.AddBullet(bulletController);
-                bulletView.gameObject.SetActive(false);
+                AddBulletToPool();
             }
+        }
+
+        private BulletController AddBulletToPool()
+        {
+            var bulletController = new BulletController();
+            BulletModel bulletModel = new();
+            bulletModel.SetPos(_model.SpawnPosition);
+            bulletModel.DeSpawn();
+            var bulletView = Object.Instantiate(_model.BulletPrefab, _model.SpawnPosition, Quaternion.identity,
+                _view.bulletPoolTransform);
+
+            InjectDependencies(bulletController);
+            bulletController.Init(bulletView, bulletModel);
+            bulletController.Spawn(_model.SpawnPosition, bulletModel);
+            _model.AddBullet(bulletController);
+            bulletView.gameObject.SetActive(false);
+            return bulletController;
         }
     }
 }

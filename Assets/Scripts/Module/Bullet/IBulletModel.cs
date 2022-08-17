@@ -1,6 +1,6 @@
 ﻿using Agate.MVC.Base;
 
-namespace SpacePlan.Module.Bullet.Model
+namespace SpacePlan.Module.Bullet
 {
     public interface IBulletModel : IBaseModel
     {

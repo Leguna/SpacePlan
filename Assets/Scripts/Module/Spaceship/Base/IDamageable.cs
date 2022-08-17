@@ -4,7 +4,7 @@
     {
         float CurrentHealth { get; }
         float MaxHealth { get; }
-        bool IsDeath { get; }
+        bool IsDeath => CurrentHealth <= 0;
         void TakeDamage(float damage);
     }
 }

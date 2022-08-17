@@ -6,8 +6,6 @@ namespace SpacePlan.Module.Spaceship.Base
     {
         GameObject BulletPrefab { get; }
         float FireRate { get; }
-        float FireRateMax { get; }
-        float Damage { get; }
 
     }
 }

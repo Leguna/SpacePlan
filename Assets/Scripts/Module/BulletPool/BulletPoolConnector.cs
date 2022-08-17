@@ -1,8 +1,7 @@
 ﻿using Agate.MVC.Base;
 using SpacePlan.Message;
-using SpacePlan.Module.BulletPool;
 
-namespace SpacePlan.Module.Bullet.Connector
+namespace SpacePlan.Module.BulletPool
 {
     public class BulletPoolConnector : BaseConnector
     {

@@ -1,12 +1,9 @@
 ﻿using System;
 using Agate.MVC.Base;
-using SpacePlan.Module.Bullet.Model;
-using SpacePlan.Module.Bullet.View;
-using SpacePlan.Module.Spaceship.Base;
-using SpacePlan.Module.Spaceship.Ship.Interfaces;
+using SpacePlan.Module.Spaceship.Enemy;
 using UnityEngine;
 
-namespace SpacePlan.Module.Bullet.Controller
+namespace SpacePlan.Module.Bullet
 {
     public class BulletController : ObjectController<BulletController, BulletModel, IBulletModel, BulletView>
     {
@@ -44,10 +41,10 @@ namespace SpacePlan.Module.Bullet.Controller
 
         private void OnHit(Collider2D obj)
         {
-            obj.TryGetComponent(out IDamageable damageable);
-            if (damageable == null) return;
+            obj.TryGetComponent(out EnemySpaceshipView enemySpaceshipView);
+            if (enemySpaceshipView == null) return;
 
-            damageable.TakeDamage(_model.DamageValue);
+            enemySpaceshipView.OnHitEvent(_model);
             _model.TakeDamage(1);
             if (_model.IsDeath) DeSpawn();
         }

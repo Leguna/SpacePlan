@@ -1,9 +1,8 @@
 using System;
 using Agate.MVC.Base;
-using SpacePlan.Module.Bullet.Model;
 using UnityEngine;
 
-namespace SpacePlan.Module.Bullet.View
+namespace SpacePlan.Module.Bullet
 {
     public class BulletView : ObjectView<IBulletModel>
     {
