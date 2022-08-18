@@ -7,7 +7,7 @@ namespace SpacePlan.Module.Bullet
 {
     public class BulletModel : BaseModel, IMovable, IDamageable, IBulletModel, IDoingDamage
     {
-        public float Damage { private set; get; }
+        public float DamageValue { private set; get; }
         public Vector2 Velocity { get; private set; }
         public Vector2 Position { get; private set; }
         private Limit DeSpawnLimitY { get; }
@@ -22,7 +22,7 @@ namespace SpacePlan.Module.Bullet
             MaxHealth = 1;
             CurrentHealth = MaxHealth;
             Position = Vector2.zero;
-            Damage = 1;
+            DamageValue = 1;
             DeSpawnLimitY = new Limit { Min = -7, Max = 7 };
         }
 
@@ -38,7 +38,7 @@ namespace SpacePlan.Module.Bullet
 
         private void SetDamageValue(float damageValue)
         {
-            Damage = damageValue;
+            DamageValue = damageValue;
             SetDataAsDirty();
         }
 

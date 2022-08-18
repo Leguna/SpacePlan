@@ -11,7 +11,7 @@ namespace SpacePlan.Module.Spaceship.Player
             BulletPrefab = null;
             FireRate = 1;
             FireRateMax = 1;
-            Damage = 1;
+            DamageValue = 1;
             MaxHealth = 1;
             SetDataAsDirty();
         }
@@ -22,7 +22,7 @@ namespace SpacePlan.Module.Spaceship.Player
             BulletPrefab = bulletPrefab;
             FireRate = fireRate;
             FireRateMax = fireRateMax;
-            Damage = damage;
+            DamageValue = damage;
             MaxHealth = maxHealth;
             SetDataAsDirty();
         }
@@ -86,7 +86,7 @@ namespace SpacePlan.Module.Spaceship.Player
         public GameObject BulletPrefab { get; private set; }
         public float FireRate { get; private set; }
         public float FireRateMax { get; private set; }
-        public float Damage { get; private set; }
+        public float DamageValue { get; private set; }
 
 
         public float CurrentHealth { get; private set; }

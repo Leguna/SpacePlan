@@ -13,12 +13,6 @@ namespace SpacePlan.Gameplay
         private SoundFxController _soundFx;
         private PlayerSpaceshipController _playerSpaceshipController;
 
-        private void OnUpdateCoin(UpdateCoinMessage message)
-        {
-            _saveData.OnUpdateCoin(message.Coin);
-            _soundFx.OnUpdateCoin();
-        }
-
         private void OnMoveSpaceship(InputMessage message)
         {
             _playerSpaceshipController.OnMoveInput(message.Direction);
@@ -26,13 +20,11 @@ namespace SpacePlan.Gameplay
 
         protected override void Connect()
         {
-            Subscribe<UpdateCoinMessage>(OnUpdateCoin);
             Subscribe<InputMessage>(OnMoveSpaceship);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<UpdateCoinMessage>(OnUpdateCoin);
             Unsubscribe<InputMessage>(OnMoveSpaceship);
         }
     }

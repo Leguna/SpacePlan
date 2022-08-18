@@ -51,7 +51,8 @@ namespace SpacePlan.Gameplay
             return new IConnector[]
             {
                 new GameplayConnector(),
-                new BulletPoolConnector()
+                new BulletPoolConnector(),
+                new EnemySpaceshipConnector()
             };
         }
 

@@ -1,4 +1,5 @@
 ﻿using Agate.MVC.Base;
+using SpacePlan.Message;
 using SpacePlan.Module.Spaceship.Base;
 using UnityEngine;
 
@@ -14,9 +15,9 @@ namespace SpacePlan.Module.Spaceship.Enemy
             _view.SetCallbacks(OnCollisionEvent, OnTakeDamageEvent);
         }
 
-        private void OnTakeDamageEvent(IDoingDamage damage)
+        public void OnTakeDamageEvent(IDoingDamage doingDamage)
         {
-            _model.TakeDamage(damage.Damage);
+            _model.TakeDamage(doingDamage.DamageValue);
         }
 
         public void OnCollisionEvent(Collider2D col)

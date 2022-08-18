@@ -2,6 +2,6 @@
 {
     public interface IDoingDamage
     {
-        float Damage { get; }
+        float DamageValue { get; }
     }
 }

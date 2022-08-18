@@ -16,7 +16,7 @@ namespace SpacePlan.Module.BulletPool
         {
             Bullets = new List<BulletController>();
             BulletPrefab = Resources.Load<BulletView>("Prefabs/Bullet");
-            PoolSize = 2;
+            PoolSize = 4;
         }
 
         public void AddBullet(BulletController bullet)

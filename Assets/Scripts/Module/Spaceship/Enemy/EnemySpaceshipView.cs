@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace SpacePlan.Module.Spaceship.Enemy
 {
-    public class EnemySpaceshipView : ObjectView<IEnemySpaceshipModel>
+    public class EnemySpaceshipView : ObjectView<IEnemySpaceshipModel>, IDamageableView
     {
         [SerializeField] public Rigidbody2D enemyRigidbody;
         private Action<Collider2D> _onCollision;
         private Action<IDoingDamage> _onTakeDamage;
+        private Action<IDamageable> _onHitEvent;
 
         public void SetCallbacks(Action<Collider2D> onCollision, Action<IDoingDamage> onTakeDamage)
         {

@@ -21,7 +21,6 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
-            Debug.Log($"Enemy took {damage} damage");
             SetDataAsDirty();
         }
 
