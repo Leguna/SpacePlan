@@ -9,11 +9,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PowerUp
   - Water
   - UI
-  - 
-  - 
+  - Bullet
+  - Spaceship
   - 
   - 
   - 

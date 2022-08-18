@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections;
-using SpacePlan.Module.Spaceship.Base;
+﻿using SpacePlan.Module.Spaceship.Base;
 using UnityEngine;
 
 namespace SpacePlan.Module.Spaceship.Enemy
 {
     public class EnemySpaceshipModel : SpaceshipBaseModel, IEnemySpaceshipModel
     {
-        public Vector2 Velocity { get; set; }
+        public MoveDirection CurrentMoveDirection { get; private set; }
 
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; }
+
+        public bool IsDeath => CurrentHealth <= 0;
+
+        public Vector3 DeSpawnPosition { get; } = new Vector3(0, -13, 0);
 
         public EnemySpaceshipModel()
         {
             MaxHealth = 1;
             CurrentHealth = MaxHealth;
+        }
+
+        public EnemySpaceshipModel(float damage):this()
+        {
+            Damage = damage;
         }
 
         public void TakeDamage(float damage)
@@ -24,22 +31,64 @@ namespace SpacePlan.Module.Spaceship.Enemy
             SetDataAsDirty();
         }
 
+        public void DeSpawn()
+        {
+            CurrentHealth = 0;
+            SetPos(DeSpawnPosition);
+            SetDataAsDirty();
+        }
+
         public GameObject BulletPrefab { get; }
         public float FireRate { get; }
+        public IDoingDamage DoingDamage { get; }
         public float Damage { get; }
-        public float MoveDelayTime { get; }
+        public float MoveDelayTime { get; private set; }
+        public float CurrentTime { get; }
         public bool IsMoving { get; }
 
-        public IEnumerator SetDelayedMove(float delay, Action repeatedMove)
+        public void DelayedMove()
         {
-            yield return new WaitForSeconds(delay);
-            repeatedMove();
+            MoveDelayTime -= Time.deltaTime;
+            if (MoveDelayTime <= 0)
+            {
+            }
+        }
+
+        public void NextMove()
+        {
+            switch (CurrentMoveDirection)
+            {
+                case MoveDirection.None:
+                    Move(MoveDirection.Right, Vector3.right * Speed);
+                    break;
+                case MoveDirection.Up:
+                    Move(MoveDirection.Right, Vector3.right * Speed);
+                    break;
+                case MoveDirection.Right:
+                    Move(MoveDirection.Down, Vector3.down * Speed);
+                    break;
+                case MoveDirection.Down:
+                    Move(MoveDirection.Left, Vector3.left * Speed);
+                    break;
+                case MoveDirection.Left:
+                    Move(MoveDirection.Up, Vector3.up * Speed);
+                    break;
+                default:
+                    Move(MoveDirection.None, Vector3.zero);
+                    break;
+            }
+        }
+
+        public void Move(MoveDirection moveDirection, Vector3 velocity)
+        {
+            Velocity = velocity;
+            CurrentMoveDirection = moveDirection;
+            SetDataAsDirty();
         }
 
         public void StopMove()
         {
-            MoveVelocity = Vector3.zero;
-            SetDataAsDirty();
+            Move(MoveDirection.None, Vector3.zero);
         }
     }
 }

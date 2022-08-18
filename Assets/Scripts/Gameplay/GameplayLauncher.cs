@@ -3,12 +3,15 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
 using SpacePlan.Constant;
+using SpacePlan.Message;
 using SpacePlan.Module.BulletPool;
 using SpacePlan.Module.ClickGame;
+using SpacePlan.Module.EnemyPool;
 using SpacePlan.Module.InputSystem;
+using SpacePlan.Module.PowerUpPool;
 using SpacePlan.Module.SoundFx;
-using SpacePlan.Module.Spaceship.Enemy;
 using SpacePlan.Module.Spaceship.Player;
+using SpacePlan.Module.Spaceship.PowerUp;
 
 namespace SpacePlan.Gameplay
 {
@@ -21,7 +24,8 @@ namespace SpacePlan.Gameplay
         private PlayerSpaceshipController _playerSpaceshipController;
         private SpaceshipInputController _spaceshipInputController;
         private BulletPoolController _bulletPoolController;
-        private EnemySpaceshipController _enemySpaceshipController;
+        private EnemyPoolController _enemyPoolController;
+        private PowerUpPoolController _powerUpPoolController;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -32,7 +36,8 @@ namespace SpacePlan.Gameplay
                 new SpaceshipInputController(),
                 new PlayerSpaceshipController(),
                 new BulletPoolController(),
-                new EnemySpaceshipController()
+                new EnemyPoolController(),
+                new PowerUpPoolController()
             };
         }
 
@@ -42,7 +47,9 @@ namespace SpacePlan.Gameplay
             _soundFx.SetView(_view.SoundFxView);
             _playerSpaceshipController.SetView(_view.PlayerSpaceshipView);
             _bulletPoolController.SetView(_view.BulletPoolView);
-            _enemySpaceshipController.SetView(_view.EnemySpaceshipView);
+            _enemyPoolController.SetView(_view.EnemyPoolView);
+            _powerUpPoolController.SetView(_view.PowerUpPoolView);
+            Publish(new StartGameMessage(true));
             yield return null;
         }
 
@@ -53,7 +60,9 @@ namespace SpacePlan.Gameplay
             {
                 new GameplayConnector(),
                 new BulletPoolConnector(),
-                new EnemySpaceshipConnector()
+                new EnemyPoolConnector(),
+                new PlayerSpaceshipConnector(),
+                new PowerUpPoolConnector()
             };
         }
 

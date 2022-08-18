@@ -8,21 +8,17 @@ namespace SpacePlan.Module.Spaceship.Player
     {
         public PlayerSpaceshipModel()
         {
-            BulletPrefab = null;
             FireRate = 1;
-            FireRateMax = 1;
             DamageValue = 1;
             MaxHealth = 1;
             SetDataAsDirty();
         }
 
-        public void Init(GameObject bulletPrefab, float fireRate, float fireRateMax,
-            float damage, float maxHealth)
+        public void Init(GameObject bulletPrefab, float fireRate, float fireRateMax, float maxHealth,
+            IDoingDamage doingDamage)
         {
-            BulletPrefab = bulletPrefab;
             FireRate = fireRate;
-            FireRateMax = fireRateMax;
-            DamageValue = damage;
+            DoingDamage = doingDamage;
             MaxHealth = maxHealth;
             SetDataAsDirty();
         }
@@ -36,6 +32,7 @@ namespace SpacePlan.Module.Spaceship.Player
         }
 
         public Limit LimitHorizontalMovement { get; private set; }
+        public Vector2 MoveVelocity { get; }
 
         public void SetVelocity(Vector2 velocity)
         {
@@ -49,13 +46,13 @@ namespace SpacePlan.Module.Spaceship.Player
         private void MoveLeft(Vector2 moveLeftVelocity)
         {
             if (!CanMoveLeft && moveLeftVelocity.x >= 0) return;
-            MoveVelocity = moveLeftVelocity;
+            Velocity = moveLeftVelocity;
         }
 
         private void MoveRight(Vector2 moveRightVelocity)
         {
             if (!CanMoveRight && moveRightVelocity.x <= 0) return;
-            MoveVelocity = moveRightVelocity;
+            Velocity = moveRightVelocity;
         }
 
         private bool CanMoveLeft => Position.x > LimitHorizontalMovement.Min;
@@ -74,20 +71,25 @@ namespace SpacePlan.Module.Spaceship.Player
 
         public void CheckMoveBoundaries()
         {
-            if ((!CanMoveLeft && MoveVelocity.x < 0) || (!CanMoveRight && MoveVelocity.x > 0)) StopMove();
+            if ((!CanMoveLeft && Velocity.x < 0) || (!CanMoveRight && Velocity.x > 0)) StopMove();
         }
 
         private void StopMove()
         {
-            MoveVelocity = Vector2.zero;
+            Velocity = Vector2.zero;
             SetDataAsDirty();
         }
 
-        public GameObject BulletPrefab { get; private set; }
         public float FireRate { get; private set; }
-        public float FireRateMax { get; private set; }
+        public IDoingDamage DoingDamage { get; private set; }
         public float DamageValue { get; private set; }
+        public float BulletHealth { get; private set; } = 1;
 
+        public void SetBulletHealth(float health)
+        {
+            BulletHealth = health;
+            SetDataAsDirty();
+        }
 
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; private set; }
@@ -95,7 +97,6 @@ namespace SpacePlan.Module.Spaceship.Player
 
         public void TakeDamage(float damage)
         {
-            Debug.Log($"Player took {damage} damage");
             CurrentHealth -= damage;
             SetDataAsDirty();
         }

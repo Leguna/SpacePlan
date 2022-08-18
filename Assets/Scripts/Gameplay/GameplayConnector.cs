@@ -31,6 +31,7 @@ namespace SpacePlan.Gameplay
             Subscribe<InputMessage>(OnMoveSpaceship);
         }
 
+
         protected override void Disconnect()
         {
             Unsubscribe<UpdateScoreMessage>(OnUpdateScorePlayer);

@@ -10,7 +10,7 @@ namespace SpacePlan.Module.BulletPool
         public void OnSpawnBullet(SpawnBulletMessage message)
         {
             var position = message.SpawnTransform.position;
-            SpawnBullet(position);
+            SpawnBullet(position, message.Damage, message.Health);
         }
 
         public override void SetView(BulletPoolView view)
@@ -19,10 +19,10 @@ namespace SpacePlan.Module.BulletPool
             BulletPoolSetup();
         }
 
-        private void SpawnBullet(Vector3 position)
+        private void SpawnBullet(Vector3 position, float damage, float health)
         {
             BulletController bulletController = _model.GetBulletController() ?? AddBulletToPool();
-            bulletController.Spawn(position, new BulletModel());
+            bulletController.Spawn(position, new BulletModel(damage, health));
         }
 
         private void BulletPoolSetup()
