@@ -10,11 +10,13 @@ namespace SpacePlan.Module.EnemyPool
         protected override void Connect()
         {
             Subscribe<StartGameMessage>(_enemyPoolController.SpawnEnemyEvent);
+            Subscribe<EnemyDestroyedMessage>(_enemyPoolController.OnEnemyDestroyed);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<StartGameMessage>(_enemyPoolController.SpawnEnemyEvent);
+            Unsubscribe<EnemyDestroyedMessage>(_enemyPoolController.OnEnemyDestroyed);
         }
     }
 }

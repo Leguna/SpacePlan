@@ -44,7 +44,6 @@ namespace SpacePlan.Module.Spaceship.PowerUp
 
         public void Spawn(PowerUpModel model, Vector2 position)
         {
-            Debug.Log(_view.gameObject.name);
             _view.gameObject.SetActive(true);
             _model = model;
             _model.Move(Vector2.down * _model.Speed);

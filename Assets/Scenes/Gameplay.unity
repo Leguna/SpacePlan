@@ -681,18 +681,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1050312161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6807991541716146389, guid: fb7ab81ae8b561542b05b6a904aa0e18, type: 3}
+--- !u!114 &1050312162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1050312162, guid: fb7ab81ae8b561542b05b6a904aa0e18, type: 3}
   m_PrefabInstance: {fileID: 6807991542043647511}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1050312162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050312161}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0162ceb2c7854183af56464b36151cda, type: 3}
@@ -1178,9 +1172,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPool
       objectReference: {fileID: 0}
-    - target: {fileID: 6807991541914339466, guid: fb7ab81ae8b561542b05b6a904aa0e18, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb7ab81ae8b561542b05b6a904aa0e18, type: 3}

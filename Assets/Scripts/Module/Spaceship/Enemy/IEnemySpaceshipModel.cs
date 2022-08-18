@@ -7,5 +7,7 @@ namespace SpacePlan.Module.Spaceship.Enemy
     {
         Vector2 Velocity { get; }
         MoveDirection CurrentMoveDirection { get; }
+        public Vector2 SpawnPosition { get;  }
+
     }
 }
