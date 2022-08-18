@@ -19,6 +19,7 @@ namespace SpacePlan.Module.Spaceship.Enemy
         {
             MaxHealth = 1;
             Speed = 0.3f;
+            FireRate = 3;
             CurrentHealth = MaxHealth;
             CurrentTime = MoveDelayTime;
         }
@@ -102,5 +103,8 @@ namespace SpacePlan.Module.Spaceship.Enemy
         {
             Move(MoveDirection.None, Vector3.zero);
         }
+
+        public float DamageValue { get; }
+        public float BulletHealth => 5;
     }
 }

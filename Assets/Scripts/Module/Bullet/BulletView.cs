@@ -8,10 +8,12 @@ namespace SpacePlan.Module.Bullet
     {
         private Action<Collider2D> _onTriggerEnterEvent;
         [SerializeField] public Rigidbody2D Rigidbody2D;
+        private Action<Vector3> _onMoveEvent;
 
-        public void SetCallbacks(Action<Collider2D> onTriggerEnterEvent)
+        public void SetCallbacks(Action<Collider2D> onTriggerEnterEvent, Action<Vector3> onMoveEvent)
         {
             _onTriggerEnterEvent = onTriggerEnterEvent;
+            _onMoveEvent = onMoveEvent;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -25,6 +27,11 @@ namespace SpacePlan.Module.Bullet
 
         protected override void UpdateRenderModel(IBulletModel model)
         {
+        }
+
+        private void FixedUpdate()
+        {
+            _onMoveEvent?.Invoke(transform.position);
         }
     }
 }
