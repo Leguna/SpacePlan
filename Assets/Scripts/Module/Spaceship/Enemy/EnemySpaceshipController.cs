@@ -12,12 +12,33 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public override void SetView(EnemySpaceshipView view)
         {
             base.SetView(view);
-            _view.SetCallbacks(OnTakeDamageEvent, OnMoveEvent);
+            _view.SetCallbacks(OnTakeDamageEvent, OnMoveEvent, Shoot);
         }
 
         private void OnMoveEvent()
         {
+            _model.SetPos(_view.transform.position);
             _model.DelayedMove();
+        }
+
+        private void Shoot()
+        {
+            // TODO @Leguna: Implement Enemy Shoot
+            // Debug.Log($"Shoot");
+            // if (CheckIsFrontEnemy()) return;
+            // Publish(new SpawnBulletMessage(_view.transform.position + Vector3.down, _model.DamageValue,
+            //     _model.BulletHealth,
+            //     Vector2.down));
+        }
+
+        private bool CheckIsFrontEnemy()
+        {
+            int layerMask = ~(LayerMask.GetMask("Enemy"));
+
+            var raycastHit2D = Physics2D.Raycast(_view.transform.position, Vector2.down, 10f,
+                layerMask);
+            if (raycastHit2D) return raycastHit2D.collider.gameObject.CompareTag("Enemy");
+            return false;
         }
 
         public void OnTakeDamageEvent(IDoingDamage doingDamage)

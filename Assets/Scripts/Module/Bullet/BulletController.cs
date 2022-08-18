@@ -1,8 +1,6 @@
 ﻿using System;
 using Agate.MVC.Base;
-using SpacePlan.Message;
 using SpacePlan.Module.Spaceship.Base;
-using SpacePlan.Module.Spaceship.Enemy;
 using UnityEngine;
 
 namespace SpacePlan.Module.Bullet
@@ -16,7 +14,7 @@ namespace SpacePlan.Module.Bullet
             _onHitEvent = OnHit;
             SetView(bulletView);
             _model = bulletModel;
-            _view.SetCallbacks(_onHitEvent);
+            _view.SetCallbacks(_onHitEvent, OnMoveEvent);
         }
 
         private void OnMoveEvent(Vector3 pos)
@@ -30,19 +28,19 @@ namespace SpacePlan.Module.Bullet
             if (_model.IsLimitReached) DeSpawn();
         }
 
-        public void Spawn(Vector3 position, BulletModel bulletModel)
+        public void Spawn(Vector3 dir, Vector3 position, BulletModel bulletModel)
         {
             _model = bulletModel;
             _view.transform.position = position;
             _view.gameObject.SetActive(true);
-            _model.Move(Vector2.up * _model.Speed);
+            _model.Move(dir * _model.Speed);
             _view.Rigidbody2D.velocity = _model.Velocity;
         }
 
         private void OnHit(Collider2D obj)
         {
             obj.TryGetComponent(out IDamageableView damageableView);
-            damageableView.OnHitEvent(_model);
+            damageableView?.OnHitEvent(_model);
 
             _model.TakeDamage(1);
             if (_model.IsDeath) DeSpawn();

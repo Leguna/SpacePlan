@@ -55,7 +55,6 @@ namespace SpacePlan.Module.EnemyPool
                 if (!enemySpaceshipController.Model.IsDeath) count++;
             }
 
-            Debug.Log($"Alive count: {count}");
             return count;
         }
     }

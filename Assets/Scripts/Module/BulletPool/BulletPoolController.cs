@@ -9,8 +9,8 @@ namespace SpacePlan.Module.BulletPool
     {
         public void OnSpawnBullet(SpawnBulletMessage message)
         {
-            var position = message.SpawnTransform.position;
-            SpawnBullet(position, message.Damage, message.Health);
+            var position = message.SpawnPosition;
+            SpawnBullet(message.Direction, position, message.Damage, message.Health);
         }
 
         public override void SetView(BulletPoolView view)
@@ -19,10 +19,10 @@ namespace SpacePlan.Module.BulletPool
             BulletPoolSetup();
         }
 
-        private void SpawnBullet(Vector3 position, float damage, float health)
+        private void SpawnBullet(Vector3 dir, Vector3 position, float damage, float health)
         {
             BulletController bulletController = _model.GetBulletController() ?? AddBulletToPool();
-            bulletController.Spawn(position, new BulletModel(damage, health));
+            bulletController.Spawn(dir, position, new BulletModel(damage, health));
         }
 
         private void BulletPoolSetup()
@@ -44,7 +44,7 @@ namespace SpacePlan.Module.BulletPool
 
             InjectDependencies(bulletController);
             bulletController.Init(bulletView, bulletModel);
-            bulletController.Spawn(_model.SpawnPosition, bulletModel);
+            bulletController.Spawn(Vector3.zero, _model.SpawnPosition, bulletModel);
             _model.AddBullet(bulletController);
             bulletView.gameObject.SetActive(false);
             return bulletController;

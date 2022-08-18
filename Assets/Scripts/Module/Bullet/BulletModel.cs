@@ -17,13 +17,18 @@ namespace SpacePlan.Module.Bullet
 
         public BulletModel()
         {
-            Velocity = Vector2.up;
+            Velocity = Vector2.zero;
             Speed = 4;
             MaxHealth = 1;
             CurrentHealth = MaxHealth;
             Position = Vector2.zero;
             DamageValue = 1;
             DeSpawnLimitY = new Limit { Min = -7, Max = 7 };
+        }
+
+        public BulletModel(Vector2 velocity) : this()
+        {
+            Velocity = velocity;
         }
 
         public BulletModel(float damageValue, float maxHealth) : this()

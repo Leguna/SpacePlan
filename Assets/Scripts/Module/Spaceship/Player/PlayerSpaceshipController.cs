@@ -25,7 +25,8 @@ namespace SpacePlan.Module.Spaceship.Player
 
         private void OnShoot()
         {
-            Publish(new SpawnBulletMessage(_view.bulletSpawnTransform, _model.DamageValue, _model.BulletHealth));
+            Publish(new SpawnBulletMessage(_view.bulletSpawnTransform.position, _model.DamageValue, _model.BulletHealth,
+                Vector3.up));
         }
 
         private void Init(float speed, Limit limit)

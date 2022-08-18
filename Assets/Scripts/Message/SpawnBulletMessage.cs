@@ -4,15 +4,17 @@ namespace SpacePlan.Message
 {
     public struct SpawnBulletMessage
     {
-        public Transform SpawnTransform { get; }
+        public Vector3 Direction;
+        public Vector3 SpawnPosition { get; }
         public float Health { get; }
         public float Damage { get; }
 
-        public SpawnBulletMessage(Transform spawnTransform, float damage, float health)
+        public SpawnBulletMessage(Vector3 spawnPosition, float damage, float health, Vector3 direction)
         {
-            SpawnTransform = spawnTransform;
+            SpawnPosition = spawnPosition;
             Damage = damage;
             Health = health;
+            Direction = direction;
         }
     }
 }
