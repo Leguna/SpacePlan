@@ -4,9 +4,9 @@ namespace SpacePlan.Module.Base
 {
 
     [Serializable]
-    public struct ScorePlayer
+    public class EntryHighscore
     {
-        public int Score;
-        public string PlayerName;
+        public int score;
+        public string name;
     }
 }

@@ -4,9 +4,9 @@ namespace SpacePlan.Message
 {
     public struct UpdateScoreMessage 
     {
-        public ScorePlayer playerScore { get; private set; }
+        public EntryHighscore playerScore { get; private set; }
 
-        public UpdateScoreMessage(ScorePlayer scorePlayer)
+        public UpdateScoreMessage(EntryHighscore scorePlayer)
         {
             playerScore = scorePlayer;
         }

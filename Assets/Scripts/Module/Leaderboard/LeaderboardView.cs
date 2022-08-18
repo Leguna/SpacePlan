@@ -1,44 +1,58 @@
 ﻿using Agate.MVC.Base;
-using System.Collections;
 using UnityEngine.Events;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-using System;
-using SpacePlan.Module.Base;
 using System.Collections.Generic;
+using TMPro;
 
 namespace SpacePlan.Module.Leaderboard
 {
     public class LeaderboardView : ObjectView<ILeaderboardModel>
     {
-        [SerializeField] private TMP_Text _playerHighScoreText;
-        [SerializeField] private TMP_Text _playerNameText;
         [SerializeField] private Button _backButton;
-        
-        // TODO Remove this
-        [SerializeField] public List<ScorePlayer> dummyScorePlayers;
+        [SerializeField] public List<Transform> ListPlayerScoreItem;
 
         protected override void InitRenderModel(ILeaderboardModel model)
         {
-             SetLeaderboardView(dummyScorePlayers);
+
             // SetLeaderboardView(model.ScorePlayerList);
             //_playerHighScoreText.text = $"Player: {model.ScorePlayerList}";
+       
         }
  
-        void SetLeaderboardView(List<ScorePlayer> scorePlayers)
+     /*   void SetLeaderboardView(List<ScorePlayer> scorePlayers)
         {
             for (int i = 0; i < scorePlayers.Count; i++)
             {
-                _playerHighScoreText.text = scorePlayers[i].PlayerName;
-                _playerHighScoreText.text = scorePlayers[i].Score.ToString();
+                _playerHighScoreText.text = scorePlayers[i].name;
+                _playerHighScoreText.text = scorePlayers[i].score.ToString();
             }
-
-        }
+        }*/
 
         protected override void UpdateRenderModel(ILeaderboardModel model)
         {
-          
+            for (int i = 0; i < model.limitLeaderboard; i++)
+            {
+                TMP_Text posText = ListPlayerScoreItem[i].Find("pos tmp").GetComponent<TMP_Text>();
+                TMP_Text scoreText = ListPlayerScoreItem[i].Find("score tmp").GetComponent<TMP_Text>();
+                TMP_Text nameText = ListPlayerScoreItem[i].Find("name tmp").GetComponent<TMP_Text>();
+                ListPlayerScoreItem[i].gameObject.SetActive(true);
+
+                if (i >= model.entryHighscores.Count)
+                {
+                    posText.text = "";
+                    scoreText.text = "";
+                    nameText.text = "";
+                    continue;
+                }
+
+                if (model.entryHighscores.Count == 0) break;
+
+                posText.text = $"{i+1}";
+                scoreText.text = model.entryHighscores[i].score.ToString();
+                nameText.text = model.entryHighscores[i].name;
+
+            }
         }
 
         public void SetCallBacks(UnityAction onClickBack)
