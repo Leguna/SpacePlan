@@ -26,12 +26,14 @@ namespace SpacePlan.Boot
 
         protected override IConnector[] GetConnectors()
         {
-            return null;
+            return new IConnector[]
+            {
+                new LeaderboardConnector()
+            };
         }
 
         private void CreateEventSystem()
         {
-
             GameObject eventSystem = new GameObject("EventSystem");
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<InputSystemUIInputModule>();

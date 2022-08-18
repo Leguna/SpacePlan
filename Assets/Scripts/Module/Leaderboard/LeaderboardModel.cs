@@ -1,14 +1,12 @@
+using System.Collections.Generic;
 using Agate.MVC.Base;
 using SpacePlan.Module.Base;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace SpacePlan.Module.Leaderboard
 {
     public class LeaderboardModel : BaseModel, ILeaderboardModel
     {
-        public List<ScorePlayer> ScorePlayerList { get;  set; }
+        public List<ScorePlayer> ScorePlayerList { get; private set; } = new();
 
         public void SetListScorePlayer(List<ScorePlayer> newScorePlayerList)
         {
@@ -20,6 +18,7 @@ namespace SpacePlan.Module.Leaderboard
         {
             ScorePlayerList.Add(scorePlayer);
             ScorePlayerList.Sort();
+            SetDataAsDirty();
         }
     }
 }

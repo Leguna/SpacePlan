@@ -12,14 +12,12 @@ namespace SpacePlan.Module.PowerUpPool
 
         public void SetCallback(Action spawnPowerUp)
         {
-            Debug.Log("TES");
             _spawnPowerUp = spawnPowerUp;
         }
 
         private void Update()
         {
             if (_model == null) return;
-            Debug.Log(_model);
 
             _time += Time.deltaTime;
             if (_time >= _model.SpawnTime)
