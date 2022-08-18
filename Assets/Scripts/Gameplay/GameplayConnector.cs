@@ -16,7 +16,10 @@ namespace SpacePlan.Gameplay
         // TODO @faisal implement pubsub & subscribe message
         public void OnUpdateScorePlayer(UpdateScoreMessage message)
         {
-            _leaderboard.OnUpdateLeaderboard(message.playerScore);
+            // TODO @faisal: Error nih
+            // _leaderboard.OnUpdateLeaderboard(message.playerScore);
+        }
+
         private void OnMoveSpaceship(InputMessage message)
         {
             _playerSpaceshipController.OnMoveInput(message.Direction);
@@ -25,7 +28,6 @@ namespace SpacePlan.Gameplay
         protected override void Connect()
         {
             Subscribe<UpdateScoreMessage>(OnUpdateScorePlayer);
-
             Subscribe<InputMessage>(OnMoveSpaceship);
         }
 

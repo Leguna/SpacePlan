@@ -12,9 +12,11 @@ namespace SpacePlan.Boot
     {
         protected override IController[] GetDependencies()
         {
-            return new IController[] {
+            return new IController[]
+            {
                 new LeaderboardController()
             };
+        }
 
         protected override IEnumerator StartInit()
         {
