@@ -9,7 +9,6 @@ namespace SpacePlan.Module.Leaderboard
 {
     public class LeaderboardModel : BaseModel, ILeaderboardModel
     {
-
         public int limitLeaderboard => 10;
 
         public List<EntryHighscore> entryHighscores{
@@ -20,7 +19,7 @@ namespace SpacePlan.Module.Leaderboard
         public void AddHighscoreEntry(EntryHighscore candidateHighscore)
         {
             entryHighscores.Add(candidateHighscore);
-            entryHighscores.Sort((x,y)=> x.score.CompareTo(y.score));
+            entryHighscores.Sort((y,x)=> x.score.CompareTo(y.score));
             SetDataAsDirty();
         }
 

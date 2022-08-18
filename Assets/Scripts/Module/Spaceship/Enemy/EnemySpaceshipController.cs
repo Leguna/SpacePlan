@@ -1,4 +1,5 @@
 ﻿using Agate.MVC.Base;
+using SpacePlan.Message;
 using SpacePlan.Module.Spaceship.Base;
 using UnityEngine;
 
@@ -24,7 +25,9 @@ namespace SpacePlan.Module.Spaceship.Enemy
             _model.TakeDamage(doingDamage.DamageValue);
             if (_model.IsDeath)
             {
+                Publish(new AddScoreMessage(_model.ScoreValue));
                 DeSpawn();
+
             }
         }
 
@@ -58,7 +61,6 @@ namespace SpacePlan.Module.Spaceship.Enemy
 
         public void StartMove()
         {
-
         }
     }
 }

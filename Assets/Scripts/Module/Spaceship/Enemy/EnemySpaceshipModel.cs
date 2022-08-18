@@ -46,6 +46,7 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public float MoveDelayTime => 2;
         public float CurrentTime { get; private set; }
         public bool IsMoving { get; }
+        public int ScoreValue => 10;
 
         public void DelayedMove()
         {

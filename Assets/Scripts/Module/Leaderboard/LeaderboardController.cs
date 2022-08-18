@@ -1,14 +1,15 @@
-﻿using Agate.MVC.Base;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Agate.MVC.Base;
 using SpacePlan.Constant;
 using SpacePlan.Message;
 using SpacePlan.Module.Base;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpacePlan.Module.Leaderboard
 {
-    public class LeaderboardController : ObjectController<LeaderboardController, LeaderboardModel, ILeaderboardModel, LeaderboardView>
+    public class LeaderboardController : ObjectController<LeaderboardController, LeaderboardModel, ILeaderboardModel,
+        LeaderboardView>
     {
 
 
@@ -16,12 +17,19 @@ namespace SpacePlan.Module.Leaderboard
         {
             yield return base.Initialize();
             //_model.SetScorePlayer(_saveData.Model.ScorePlayerList);
+            LoadData();
 
         }
 
         public void OnGetNewPlayerScore(UpdateScoreMessage scoreMessage)
         {
 
+        }
+
+        public void OnGameOver(GameOverMessage message)
+        {
+            _model.AddPlayerToLeaderBoard(message.ScorePlayer);
+            SaveData();
         }
 
         public void OnUpdateLeaderboard(List<EntryHighscore> listScorePlayer)
@@ -41,6 +49,7 @@ namespace SpacePlan.Module.Leaderboard
             Debug.Log("score loaded");
             string scoreListJson = PlayerPrefs.GetString(DataBaseConstant.leaderBoard);
             List<EntryHighscore> scoreList = JsonUtility.FromJson<List<EntryHighscore>>(scoreListJson);
+            _model.SetListScorePlayer(scoreList ?? new List<EntryHighscore>());
 
             if (scoreList == null)
             {
