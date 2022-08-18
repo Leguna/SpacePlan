@@ -46,5 +46,17 @@ namespace SpacePlan.Module.EnemyPool
         {
             return EnemyList.FirstOrDefault(enemySpaceshipController => enemySpaceshipController.Model.IsDeath);
         }
+
+        public int AliveCount()
+        {
+            int count = 0;
+            foreach (var enemySpaceshipController in EnemyList)
+            {
+                if (!enemySpaceshipController.Model.IsDeath) count++;
+            }
+
+            Debug.Log($"Alive count: {count}");
+            return count;
+        }
     }
 }

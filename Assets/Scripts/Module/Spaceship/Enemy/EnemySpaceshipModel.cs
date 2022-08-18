@@ -9,6 +9,7 @@ namespace SpacePlan.Module.Spaceship.Enemy
 
         public float CurrentHealth { get; private set; }
         public float MaxHealth { get; }
+        public Vector2 SpawnPosition { get; private set; }
 
         public bool IsDeath => CurrentHealth <= 0;
 
@@ -19,6 +20,13 @@ namespace SpacePlan.Module.Spaceship.Enemy
             MaxHealth = 1;
             Speed = 0.3f;
             CurrentHealth = MaxHealth;
+            CurrentTime = MoveDelayTime;
+        }
+
+        public EnemySpaceshipModel(Vector2 pos) : this()
+        {
+            SpawnPosition = pos;
+            SetPos(pos);
         }
 
         public EnemySpaceshipModel(float damage) : this()

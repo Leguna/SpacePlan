@@ -19,6 +19,7 @@ namespace SpacePlan.Module.Spaceship.Enemy
 
         protected override void InitRenderModel(IEnemySpaceshipModel model)
         {
+            enemyRigidbody.velocity = model.Velocity;
         }
 
         protected override void UpdateRenderModel(IEnemySpaceshipModel model)

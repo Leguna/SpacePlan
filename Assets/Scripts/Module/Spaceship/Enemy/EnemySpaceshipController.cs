@@ -25,9 +25,9 @@ namespace SpacePlan.Module.Spaceship.Enemy
             _model.TakeDamage(doingDamage.DamageValue);
             if (_model.IsDeath)
             {
-                Publish(new AddScoreMessage(_model.ScoreValue));
                 DeSpawn();
-
+                Publish(new AddScoreMessage(_model.ScoreValue));
+                Publish(new EnemyDestroyedMessage());
             }
         }
 
@@ -50,8 +50,12 @@ namespace SpacePlan.Module.Spaceship.Enemy
             SetView(enemySpaceshipView);
         }
 
-        public void Spawn()
+        public void Spawn(Vector2 pos)
         {
+            _model = new EnemySpaceshipModel(pos);
+            _view.transform.position = pos;
+            _model.DelayedMove();
+            _view.SetModel(_model);
             _view.gameObject.SetActive(true);
         }
 

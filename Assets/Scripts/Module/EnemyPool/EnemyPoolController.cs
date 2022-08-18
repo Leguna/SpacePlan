@@ -20,7 +20,7 @@ namespace SpacePlan.Module.EnemyPool
         {
             foreach (var enemySpaceshipController in _model.EnemyList)
             {
-                enemySpaceshipController.Spawn();
+                enemySpaceshipController.Spawn(enemySpaceshipController.Model.SpawnPosition);
             }
         }
 
@@ -35,9 +35,7 @@ namespace SpacePlan.Module.EnemyPool
         private void AddObjectToPool(int index)
         {
             var enemySpaceshipController = new EnemySpaceshipController();
-            EnemySpaceshipModel enemySpaceshipModel = new();
-            enemySpaceshipModel.SetPos(GetSpawnPositionByIndex(index));
-            enemySpaceshipModel.DeSpawn();
+            EnemySpaceshipModel enemySpaceshipModel = new(GetSpawnPositionByIndex(index));
             var enemySpaceshipView = Object.Instantiate(_model.EnemyView, GetSpawnPositionByIndex(index),
                 Quaternion.identity,
                 _view.transform);
@@ -45,6 +43,7 @@ namespace SpacePlan.Module.EnemyPool
             InjectDependencies(enemySpaceshipController);
             enemySpaceshipController.Init(enemySpaceshipView, enemySpaceshipModel);
             _model.AddObjectPool(enemySpaceshipController);
+            enemySpaceshipModel.DeSpawn();
             enemySpaceshipView.gameObject.SetActive(false);
         }
 
@@ -62,6 +61,12 @@ namespace SpacePlan.Module.EnemyPool
             if (!message.IsPlaying) return;
 
             SpawnEnemy();
+        }
+
+        public void OnEnemyDestroyed(EnemyDestroyedMessage message)
+        {
+            if (_model.AliveCount() <= 0)
+                SpawnEnemy();
         }
     }
 }
