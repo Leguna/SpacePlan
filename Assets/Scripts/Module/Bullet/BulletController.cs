@@ -2,6 +2,7 @@
 using Agate.MVC.Base;
 using SpacePlan.Message;
 using SpacePlan.Module.Spaceship.Base;
+using SpacePlan.Module.Spaceship.Enemy;
 using UnityEngine;
 
 namespace SpacePlan.Module.Bullet
@@ -9,15 +10,13 @@ namespace SpacePlan.Module.Bullet
     public class BulletController : ObjectController<BulletController, BulletModel, IBulletModel, BulletView>
     {
         private Action<Collider2D> _onHitEvent;
-        private Action<Vector3> _onMoveEvent;
 
         public void Init(BulletView bulletView, BulletModel bulletModel)
         {
             _onHitEvent = OnHit;
-            _onMoveEvent = OnMoveEvent;
             SetView(bulletView);
             _model = bulletModel;
-            _view.SetCallbacks(_onHitEvent, _onMoveEvent);
+            _view.SetCallbacks(_onHitEvent);
         }
 
         private void OnMoveEvent(Vector3 pos)

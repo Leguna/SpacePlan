@@ -5,10 +5,10 @@ namespace SpacePlan.Module.Spaceship.Base
 {
     public abstract class SpaceshipBaseModel : BaseModel, ISpaceshipModel
     {
-        public Vector2 MoveVelocity { get; protected set; }
+        public Vector2 Velocity { get; protected set; }
 
         public Vector2 Position { get; private set; }
-        public float Speed { get; private set; }
+        public float Speed { get; internal set; } = 1;
 
         public void SetSpeed(float speed)
         {
@@ -29,7 +29,7 @@ namespace SpacePlan.Module.Spaceship.Base
 
         private void SetVelocity(Vector2 moveVelocity)
         {
-            MoveVelocity = moveVelocity;
+            Velocity = moveVelocity;
             SetDataAsDirty();
         }
 

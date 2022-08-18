@@ -26,6 +26,13 @@ namespace SpacePlan.Module.Bullet
             DeSpawnLimitY = new Limit { Min = -7, Max = 7 };
         }
 
+        public BulletModel(float damageValue, float maxHealth) : this()
+        {
+            DamageValue = damageValue;
+            MaxHealth = maxHealth;
+            CurrentHealth = maxHealth;
+        }
+
         public BulletModel(Vector2 position, float speed, float damageValue, float maxHealth, Vector3 deSpawnPosition)
         {
             MaxHealth = maxHealth;

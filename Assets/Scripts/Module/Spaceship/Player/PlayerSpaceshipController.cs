@@ -1,4 +1,6 @@
-﻿using Agate.MVC.Base;
+﻿using System;
+using System.Timers;
+using Agate.MVC.Base;
 using SpacePlan.Message;
 using SpacePlan.Module.Base;
 using UnityEngine;
@@ -11,6 +13,8 @@ namespace SpacePlan.Module.Spaceship.Player
     {
         private Rigidbody2D _rigidbody2D;
 
+        private Timer Timer { get; } = new();
+
         public override void SetView(PlayerSpaceshipView view)
         {
             view.SetCallbacks(Init, SetVelocity, OnMove, OnShoot);
@@ -21,7 +25,7 @@ namespace SpacePlan.Module.Spaceship.Player
 
         private void OnShoot()
         {
-            Publish(new SpawnBulletMessage(_view.bulletSpawnTransform));
+            Publish(new SpawnBulletMessage(_view.bulletSpawnTransform, _model.DamageValue, _model.BulletHealth));
         }
 
         private void Init(float speed, Limit limit)
@@ -31,10 +35,32 @@ namespace SpacePlan.Module.Spaceship.Player
             _model.SetLimitHorizontalMovement(limit);
         }
 
+        public void OnGetPowerUpEvent(PowerUpMessage message)
+        {
+            if (message.PowerUpType == PowerUpType.PlayerBulletHealth)
+            {
+                void OnStart() => _model.SetBulletHealth(message.PowerUpValue);
+
+                void OnFinish()
+                {
+                    _model.SetBulletHealth(1);
+                }
+
+                StartPowerUpBulletHealth(message.Duration, OnStart, OnFinish);
+            }
+        }
+
+        private void StartPowerUpBulletHealth(float interval, Action onStart, Action onFinish)
+        {
+            onStart?.Invoke();
+            Timer.Interval = interval;
+            Timer.Elapsed += (sender, args) => onFinish?.Invoke();
+            Timer.Start();
+        }
 
         private void SetVelocity()
         {
-            _rigidbody2D.velocity = _model.MoveVelocity;
+            _rigidbody2D.velocity = _model.Velocity;
         }
 
         private void OnMove()

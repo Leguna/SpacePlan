@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2610040435824191033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootSpawnPlace
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2610040436670565071}
   - component: {fileID: 2610040436670565069}
   - component: {fileID: 2610040436670565068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -129,8 +129,8 @@ MonoBehaviour:
   bulletSpawnTransform: {fileID: 2610040435824191033}
   Speed: 4
   LimitHorizontalMovement:
-    Min: -7
-    Max: 7
+    Min: -8
+    Max: 8
 --- !u!1 &2610040437341586487
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2610040437341586486}
   - component: {fileID: 2610040437341586441}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShipTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
