@@ -9,11 +9,12 @@ namespace SpacePlan.Module.Spaceship.Enemy
     {
         [SerializeField] public Rigidbody2D enemyRigidbody;
         private Action<IDoingDamage> _onTakeDamage;
-        private Action<IDamageable> _onHitEvent;
+        private Action _onMove;
 
-        public void SetCallbacks(Action<IDoingDamage> onTakeDamage)
+        public void SetCallbacks(Action<IDoingDamage> onTakeDamage, Action onMove)
         {
             _onTakeDamage = onTakeDamage;
+            _onMove = onMove;
         }
 
         protected override void InitRenderModel(IEnemySpaceshipModel model)
@@ -28,6 +29,11 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public void OnHitEvent(IDoingDamage damage)
         {
             _onTakeDamage?.Invoke(damage);
+        }
+
+        private void Update()
+        {
+            _onMove?.Invoke();
         }
     }
 }
