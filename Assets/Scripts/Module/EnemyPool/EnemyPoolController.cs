@@ -32,7 +32,7 @@ namespace SpacePlan.Module.EnemyPool
             }
         }
 
-        private EnemySpaceshipController AddObjectToPool(int index)
+        private void AddObjectToPool(int index)
         {
             var enemySpaceshipController = new EnemySpaceshipController();
             EnemySpaceshipModel enemySpaceshipModel = new();
@@ -46,7 +46,6 @@ namespace SpacePlan.Module.EnemyPool
             enemySpaceshipController.Init(enemySpaceshipView, enemySpaceshipModel);
             _model.AddObjectPool(enemySpaceshipController);
             enemySpaceshipView.gameObject.SetActive(false);
-            return enemySpaceshipController;
         }
 
         private Vector3 GetSpawnPositionByIndex(int index)
@@ -63,14 +62,6 @@ namespace SpacePlan.Module.EnemyPool
             if (!message.IsPlaying) return;
 
             SpawnEnemy();
-        }
-
-        private void StartMove()
-        {
-            foreach (var enemy in _model.EnemyList)
-            {
-                enemy.StartMove();
-            }
         }
     }
 }
