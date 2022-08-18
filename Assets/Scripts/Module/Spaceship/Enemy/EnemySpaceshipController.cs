@@ -11,7 +11,12 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public override void SetView(EnemySpaceshipView view)
         {
             base.SetView(view);
-            _view.SetCallbacks(OnTakeDamageEvent);
+            _view.SetCallbacks(OnTakeDamageEvent, OnMoveEvent);
+        }
+
+        private void OnMoveEvent()
+        {
+            _model.DelayedMove();
         }
 
         public void OnTakeDamageEvent(IDoingDamage doingDamage)
@@ -45,6 +50,15 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public void Spawn()
         {
             _view.gameObject.SetActive(true);
+        }
+
+        public void Move(MoveDirection moveDir)
+        {
+        }
+
+        public void StartMove()
+        {
+
         }
     }
 }

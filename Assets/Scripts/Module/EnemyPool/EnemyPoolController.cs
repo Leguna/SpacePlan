@@ -1,4 +1,5 @@
-﻿using Agate.MVC.Base;
+﻿using System.Timers;
+using Agate.MVC.Base;
 using SpacePlan.Message;
 using SpacePlan.Module.Spaceship.Enemy;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace SpacePlan.Module.EnemyPool
 {
     public class EnemyPoolController : ObjectController<EnemyPoolController, EnemyPoolModel, EnemyPoolView>
     {
+        private Timer _timer = new();
+
         public override void SetView(EnemyPoolView view)
         {
             base.SetView(view);
@@ -60,6 +63,14 @@ namespace SpacePlan.Module.EnemyPool
             if (!message.IsPlaying) return;
 
             SpawnEnemy();
+        }
+
+        private void StartMove()
+        {
+            foreach (var enemy in _model.EnemyList)
+            {
+                enemy.StartMove();
+            }
         }
     }
 }

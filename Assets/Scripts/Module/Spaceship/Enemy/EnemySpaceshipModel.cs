@@ -17,10 +17,11 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public EnemySpaceshipModel()
         {
             MaxHealth = 1;
+            Speed = 0.3f;
             CurrentHealth = MaxHealth;
         }
 
-        public EnemySpaceshipModel(float damage):this()
+        public EnemySpaceshipModel(float damage) : this()
         {
             Damage = damage;
         }
@@ -42,15 +43,17 @@ namespace SpacePlan.Module.Spaceship.Enemy
         public float FireRate { get; }
         public IDoingDamage DoingDamage { get; }
         public float Damage { get; }
-        public float MoveDelayTime { get; private set; }
-        public float CurrentTime { get; }
+        public float MoveDelayTime => 2;
+        public float CurrentTime { get; private set; }
         public bool IsMoving { get; }
 
         public void DelayedMove()
         {
-            MoveDelayTime -= Time.deltaTime;
-            if (MoveDelayTime <= 0)
+            CurrentTime += Time.deltaTime;
+            if (CurrentTime >= MoveDelayTime)
             {
+                CurrentTime = 0;
+                NextMove();
             }
         }
 
