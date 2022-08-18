@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace SpacePlan.Constant
 {
-    class SceneConstant 
+    static class SceneConstant
     {
         public const string mainMenu = "MainMenu";
         public const string gamePlay = "Gameplay";

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Prototypes/SpaceShipPrototypeScene.unity.meta
+guid: 2254220fdeb2f1b4388a824543e85cfc
+========
 guid: 32e62be94f03cf74991c54b18800fb2a
 folderAsset: yes
+>>>>>>>> 06b7b31ecc82ef3b810b2bf1c3c47139c241abd7:Assets/Scripts/Constant.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

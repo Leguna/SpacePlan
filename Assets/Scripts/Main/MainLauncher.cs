@@ -48,14 +48,14 @@ namespace SpacePlan.Main
 
         private void OnClickLeaderboardButton()
         {
-            // Do somethink here
+            // TODO @Faisal: Remove this after implementing high score screen.
             Debug.Log("Show Score Board!");
             _view.leaderboardView.ShowView();
         }
 
         private void OnClickExitButton()
         {
-            // Do somethink here
+            // TODO @Faisal: Remove this after implementing exit screen.
             Debug.Log("Quit Game!");
         }
 

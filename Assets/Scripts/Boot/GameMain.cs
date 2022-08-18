@@ -4,6 +4,7 @@ using Agate.MVC.Core;
 using SpacePlan.Module.Leaderboard;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 namespace SpacePlan.Boot
 {
@@ -11,10 +12,9 @@ namespace SpacePlan.Boot
     {
         protected override IController[] GetDependencies()
         {
-            return new IController[]{
+            return new IController[] {
                 new LeaderboardController()
             };
-        }
 
         protected override IEnumerator StartInit()
         {
@@ -29,10 +29,11 @@ namespace SpacePlan.Boot
 
         private void CreateEventSystem()
         {
-            GameObject obj = new("Event System");
-            obj.AddComponent<EventSystem>();
-            obj.AddComponent<StandaloneInputModule>();
-            GameObject.DontDestroyOnLoad(obj);
+
+            GameObject eventSystem = new GameObject("EventSystem");
+            eventSystem.AddComponent<EventSystem>();
+            eventSystem.AddComponent<InputSystemUIInputModule>();
+            DontDestroyOnLoad(eventSystem);
         }
     }
 }

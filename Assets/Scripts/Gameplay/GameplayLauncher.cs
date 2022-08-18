@@ -3,8 +3,12 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
 using SpacePlan.Constant;
+using SpacePlan.Module.BulletPool;
 using SpacePlan.Module.ClickGame;
+using SpacePlan.Module.InputSystem;
 using SpacePlan.Module.SoundFx;
+using SpacePlan.Module.Spaceship.Enemy;
+using SpacePlan.Module.Spaceship.Player;
 
 namespace SpacePlan.Gameplay
 {
@@ -14,13 +18,21 @@ namespace SpacePlan.Gameplay
 
         private ClickGameController _clickGame;
         private SoundFxController _soundFx;
+        private PlayerSpaceshipController _playerSpaceshipController;
+        private SpaceshipInputController _spaceshipInputController;
+        private BulletPoolController _bulletPoolController;
+        private EnemySpaceshipController _enemySpaceshipController;
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[]
             {
                 new ClickGameController(),
-                new SoundFxController()
+                new SoundFxController(),
+                new SpaceshipInputController(),
+                new PlayerSpaceshipController(),
+                new BulletPoolController(),
+                new EnemySpaceshipController()
             };
         }
 
@@ -28,7 +40,9 @@ namespace SpacePlan.Gameplay
         {
             _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
-
+            _playerSpaceshipController.SetView(_view.PlayerSpaceshipView);
+            _bulletPoolController.SetView(_view.BulletPoolView);
+            _enemySpaceshipController.SetView(_view.EnemySpaceshipView);
             yield return null;
         }
 
@@ -37,7 +51,9 @@ namespace SpacePlan.Gameplay
         {
             return new IConnector[]
             {
-                new GameplayConnector()
+                new GameplayConnector(),
+                new BulletPoolConnector(),
+                new EnemySpaceshipConnector()
             };
         }
 
