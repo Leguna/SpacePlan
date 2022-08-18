@@ -5,7 +5,6 @@ using SpacePlan.Boot;
 using SpacePlan.Constant;
 using SpacePlan.Message;
 using SpacePlan.Module.BulletPool;
-using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.EnemyPool;
 using SpacePlan.Module.InputSystem;
 using SpacePlan.Module.PowerUpPool;
@@ -19,7 +18,6 @@ namespace SpacePlan.Gameplay
     {
         public override string SceneName => SceneConstant.gamePlay;
 
-        private ClickGameController _clickGame;
         private SoundFxController _soundFx;
         private PlayerSpaceshipController _playerSpaceshipController;
         private SpaceshipInputController _spaceshipInputController;
@@ -31,7 +29,6 @@ namespace SpacePlan.Gameplay
         {
             return new IController[]
             {
-                new ClickGameController(),
                 new SoundFxController(),
                 new SpaceshipInputController(),
                 new PlayerSpaceshipController(),
@@ -43,7 +40,6 @@ namespace SpacePlan.Gameplay
 
         protected override IEnumerator InitSceneObject()
         {
-            _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
             _playerSpaceshipController.SetView(_view.PlayerSpaceshipView);
             _bulletPoolController.SetView(_view.BulletPoolView);
@@ -62,7 +58,7 @@ namespace SpacePlan.Gameplay
                 new BulletPoolConnector(),
                 new EnemyPoolConnector(),
                 new PlayerSpaceshipConnector(),
-                new PowerUpPoolConnector()
+                new PowerUpPoolConnector(),
             };
         }
 
