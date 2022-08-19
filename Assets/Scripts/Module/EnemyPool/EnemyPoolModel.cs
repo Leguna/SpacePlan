@@ -21,7 +21,7 @@ namespace SpacePlan.Module.EnemyPool
         {
             EnemyList = new List<EnemySpaceshipController>();
             EnemyView = Resources.Load<EnemySpaceshipView>("Prefabs/Enemy");
-            PoolSize = 60;
+            PoolSize = 3;
         }
 
         public void AddObjectPool(EnemySpaceshipController enemySpaceship)

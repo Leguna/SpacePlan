@@ -14,29 +14,28 @@ namespace SpacePlan.Module.Leaderboard
 
         protected override void InitRenderModel(ILeaderboardModel model)
         {
-
             // SetLeaderboardView(model.ScorePlayerList);
             //_playerHighScoreText.text = $"Player: {model.ScorePlayerList}";
-       
         }
- 
-     /*   void SetLeaderboardView(List<ScorePlayer> scorePlayers)
-        {
-            for (int i = 0; i < scorePlayers.Count; i++)
-            {
-                _playerHighScoreText.text = scorePlayers[i].name;
-                _playerHighScoreText.text = scorePlayers[i].score.ToString();
-            }
-        }*/
+
+        /*   void SetLeaderboardView(List<ScorePlayer> scorePlayers)
+           {
+               for (int i = 0; i < scorePlayers.Count; i++)
+               {
+                   _playerHighScoreText.text = scorePlayers[i].name;
+                   _playerHighScoreText.text = scorePlayers[i].score.ToString();
+               }
+           }*/
 
         protected override void UpdateRenderModel(ILeaderboardModel model)
         {
             for (int i = 0; i < model.limitLeaderboard; i++)
             {
-                TMP_Text posText = ListPlayerScoreItem[i].Find("pos tmp").GetComponent<TMP_Text>();
-                TMP_Text scoreText = ListPlayerScoreItem[i].Find("score tmp").GetComponent<TMP_Text>();
-                TMP_Text nameText = ListPlayerScoreItem[i].Find("name tmp").GetComponent<TMP_Text>();
-                ListPlayerScoreItem[i].gameObject.SetActive(true);
+                if (ListPlayerScoreItem == null) return;
+                TMP_Text posText = ListPlayerScoreItem[i]?.Find("pos tmp")?.GetComponent<TMP_Text>();
+                TMP_Text scoreText = ListPlayerScoreItem[i]?.Find("score tmp")?.GetComponent<TMP_Text>();
+                TMP_Text nameText = ListPlayerScoreItem[i]?.Find("name tmp")?.GetComponent<TMP_Text>();
+                ListPlayerScoreItem[i]?.gameObject.SetActive(true);
 
                 if (i >= model.entryHighscores.Count)
                 {
@@ -48,10 +47,9 @@ namespace SpacePlan.Module.Leaderboard
 
                 if (model.entryHighscores.Count == 0) break;
 
-                posText.text = $"{i+1}";
+                posText.text = $"{i + 1}";
                 scoreText.text = model.entryHighscores[i].score.ToString();
                 nameText.text = model.entryHighscores[i].name;
-
             }
         }
 

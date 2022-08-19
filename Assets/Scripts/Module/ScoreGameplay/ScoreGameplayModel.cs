@@ -5,21 +5,21 @@ namespace SpacePlan.Module.ScoreGameplay
 {
     public class ScoreGameplayModel : BaseModel, IScoreGameplayModel
     {
-        public ScorePlayer ScorePlayer { get; private set; }
+        public EntryHighscore ScorePlayer { get; private set; }
 
         public ScoreGameplayModel()
         {
-            ScorePlayer = new ScorePlayer { Score = 0, PlayerName = "Player 1" };
+            ScorePlayer = new EntryHighscore { score = 0, name = "Player 1" };
         }
 
-        public ScoreGameplayModel(ScorePlayer scorePlayer)
+        public ScoreGameplayModel(EntryHighscore scorePlayer)
         {
             ScorePlayer = scorePlayer;
         }
 
         public void AddScore(int value)
         {
-            ScorePlayer = new ScorePlayer { PlayerName = ScorePlayer.PlayerName, Score = ScorePlayer.Score + value };
+            ScorePlayer = new EntryHighscore { name = ScorePlayer.name, score = ScorePlayer.score + value };
             SetDataAsDirty();
         }
     }

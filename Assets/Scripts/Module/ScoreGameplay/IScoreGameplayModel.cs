@@ -5,6 +5,6 @@ namespace SpacePlan.Module.ScoreGameplay
 {
     public interface IScoreGameplayModel : IBaseModel
     {
-        public ScorePlayer ScorePlayer { get; }
+        public EntryHighscore ScorePlayer { get; }
     }
 }

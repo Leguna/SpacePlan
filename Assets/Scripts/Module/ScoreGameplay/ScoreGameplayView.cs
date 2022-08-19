@@ -11,14 +11,14 @@ namespace SpacePlan.Module.ScoreGameplay
 
         protected override void InitRenderModel(IScoreGameplayModel model)
         {
-            scoreText.text = $"{model.ScorePlayer.Score}";
-            playerText.text = $"{model.ScorePlayer.PlayerName}";
+            scoreText.text = $"{model.ScorePlayer.score}";
+            playerText.text = $"{model.ScorePlayer.name}";
         }
 
         protected override void UpdateRenderModel(IScoreGameplayModel model)
         {
-            scoreText.text = $"{model.ScorePlayer.Score}";
-            playerText.text = $"{model.ScorePlayer.PlayerName}";
+            scoreText.text = $"{model.ScorePlayer.score}";
+            playerText.text = $"{model.ScorePlayer.name}";
         }
     }
 }

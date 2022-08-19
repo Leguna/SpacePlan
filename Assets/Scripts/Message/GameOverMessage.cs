@@ -4,11 +4,11 @@ namespace SpacePlan.Message
 {
     public struct GameOverMessage
     {
-        public GameOverMessage(ScorePlayer scorePlayer)
+        public GameOverMessage(EntryHighscore scorePlayer)
         {
             ScorePlayer = scorePlayer;
         }
 
-        public ScorePlayer ScorePlayer { get; }
+        public EntryHighscore ScorePlayer { get; }
     }
 }

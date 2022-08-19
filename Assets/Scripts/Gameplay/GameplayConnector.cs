@@ -2,8 +2,8 @@
 using SpacePlan.Message;
 using SpacePlan.Module.Leaderboard;
 using SpacePlan.Module.SoundFx;
-using SpacePlan.Module.Spaceship;
 using SpacePlan.Module.Spaceship.Player;
+using UnityEngine.SceneManagement;
 
 namespace SpacePlan.Gameplay
 {
@@ -29,6 +29,7 @@ namespace SpacePlan.Gameplay
         {
             Subscribe<UpdateScoreMessage>(OnUpdateScorePlayer);
             Subscribe<InputMessage>(OnMoveSpaceship);
+            Subscribe<GameOverMessage>(OnGameOver);
         }
 
 
@@ -36,6 +37,7 @@ namespace SpacePlan.Gameplay
         {
             Unsubscribe<UpdateScoreMessage>(OnUpdateScorePlayer);
             Unsubscribe<InputMessage>(OnMoveSpaceship);
+            Unsubscribe<GameOverMessage>(OnGameOver);
         }
 
         /*public void OnUpdateCoin(UpdateCoinMessage message)
@@ -43,5 +45,10 @@ namespace SpacePlan.Gameplay
            // _saveData.OnUpdateCoin(message.Coin);
             _soundFx.OnUpdateCoin();
         } */
+
+        public void OnGameOver(GameOverMessage message)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

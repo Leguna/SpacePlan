@@ -21,14 +21,10 @@ namespace SpacePlan.Module.Leaderboard
 
         }
 
-        public void OnGetNewPlayerScore(UpdateScoreMessage scoreMessage)
-        {
-
-        }
 
         public void OnGameOver(GameOverMessage message)
         {
-            _model.AddPlayerToLeaderBoard(message.ScorePlayer);
+            _model.AddHighscoreEntry(message.ScorePlayer);
             SaveData();
         }
 
@@ -55,12 +51,12 @@ namespace SpacePlan.Module.Leaderboard
             {
                 scoreList = new List<EntryHighscore>
                 {
-                    new EntryHighscore(){score = 1232, name= "sasa"},
-                    new EntryHighscore(){score = 5445, name= "asas"},
-                    new EntryHighscore(){score = 7676, name= "etef"},
-                    new EntryHighscore(){score = 9898, name= "ksls"},
-                    new EntryHighscore(){score = 7676, name= "etef"},
-                    new EntryHighscore(){score = 9898, name= "ksls"},
+                    new(){score = 1232, name= "sasa"},
+                    new(){score = 5445, name= "asas"},
+                    new(){score = 7676, name= "etef"},
+                    new(){score = 9898, name= "ksls"},
+                    new(){score = 7676, name= "etef"},
+                    new(){score = 9898, name= "ksls"},
                 };
             }
             _model.SetListScorePlayer(scoreList);

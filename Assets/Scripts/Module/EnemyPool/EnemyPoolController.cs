@@ -65,11 +65,12 @@ namespace SpacePlan.Module.EnemyPool
 
         public void OnEnemyDestroyed(EnemyDestroyedMessage message)
         {
+            Publish(new EnemyCountMessage(_model.AliveCount()));
             if (_model.AliveCount() <= 0)
             {
                 // TODO @Leguna: Implement respawn when enemy can shoot
-                // SpawnEnemy();
-                Publish(new EnemyCountMessage(_model.AliveCount()));
+                SpawnEnemy();
+                // Publish(new GameOverMessage());
             }
         }
     }
