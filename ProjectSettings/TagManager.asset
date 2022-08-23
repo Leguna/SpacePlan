@@ -3,17 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PowerUp
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Bullet
+  - Spaceship
+  - Enemy
   - 
   - 
   - 
@@ -38,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3343043365
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
